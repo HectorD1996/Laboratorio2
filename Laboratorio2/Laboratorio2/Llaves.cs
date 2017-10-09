@@ -13,7 +13,7 @@ namespace Laboratorio2
         public static void getKeys()
         {
             //Primos
-           
+
             BigInteger p = 771154151515621;
             BigInteger q = 15151851841949;
             BigInteger n = p * q;
@@ -76,27 +76,10 @@ namespace Laboratorio2
             }
             if (x1 < 0) x1 += b0;
             return x1;
-        } 
-
-
-
-
-        public static BigInteger GetGCDByModulus(BigInteger value1, BigInteger value2)
-        {
-            while (value1 != 0 && value2 != 0)
-            {
-                if (value1 > value2)
-                    value1 %= value2;
-                else
-                    value2 %= value1;
-            }
-            return 0;
         }
 
-        public static bool Coprime(BigInteger value1, BigInteger value2)
-        {
-            return GetGCDByModulus(value1, value2) == 1;
-        }
+
+        
 
     }
 }
