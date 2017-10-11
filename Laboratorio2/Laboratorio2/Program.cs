@@ -10,7 +10,8 @@ namespace Laboratorio2
     {
         static void Main(string[] args)
         {
-            Llaves.getKeys();
+            Llaves llave = new Llaves();
+            llave.getKeys();
         }
     }
 }
