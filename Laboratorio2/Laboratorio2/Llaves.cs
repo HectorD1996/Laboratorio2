@@ -12,7 +12,7 @@ namespace Laboratorio2
     {
         public static void getKeys()
         {
-            //Primos
+            //Calculo de Primos
 
             BigInteger p = 771154151515621;
             BigInteger q = 15151851841949;
@@ -33,7 +33,7 @@ namespace Laboratorio2
                 }
             }
 
-            //Enontrar d
+            //Enontrar d por medio de metodo Modo Inverse
             d = ModInverse(e, fi);
 
 
