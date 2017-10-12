@@ -11,10 +11,9 @@ namespace Laboratorio2
 {
     public class Llaves
     {
-        
         //primos
-        BigInteger p = 0;
-        BigInteger q = 0;
+        BigInteger p = 771154151515621;
+        BigInteger q = 15151851841949;
         BigInteger n;
 
         // Φ (simbolo)
@@ -23,10 +22,7 @@ namespace Laboratorio2
         BigInteger d;
         public void getKeys()
         {
-          
-            p = 1511;
-            q = 1709;
-           
+            //Calculo de Primos
             n = p * q;
 
             //Calcular Φ (n)=(p-1)*(q-1)
@@ -48,7 +44,7 @@ namespace Laboratorio2
             d = ModInverse(e, fi);
 
 
-            
+            string test ="";
         }
 
         //Deteterminar numeros coprimos
@@ -89,18 +85,17 @@ namespace Laboratorio2
             return x1;
         }
 
-        public BigInteger[] Encripta(String mensaje)
+        public void Encripta(string path)
         {
-            
+            byte[] mensaje = File.ReadAllBytes(path);//se convierte el archivo leido en un arreglo de Bytes
             int i;
             byte[] temp = new byte[1];
-            //byte[] digitos = File.ReadAllBytes(mensaje);
-            byte[] digitos = pasarByte(mensaje);
-            BigInteger[] bigdigitos = new BigInteger[digitos.Length];
+            StringBuilder contents = new StringBuilder();
+            BigInteger[] bigdigitos = new BigInteger[mensaje.Length];
 
             for (i = 0; i < bigdigitos.Length; i++)
             {
-                temp[0] = digitos[i];
+                temp[0] = mensaje[i];
                 bigdigitos[i] = new BigInteger(temp);
             }
             BigInteger[] encriptado = new BigInteger[bigdigitos.Length];
@@ -108,22 +103,24 @@ namespace Laboratorio2
             {
                 //BigInter.ModPow( 'number', 'exponent', 'modulus'));
                 encriptado[i] = BigInteger.ModPow(bigdigitos[i], e, n);
+                contents.AppendLine(encriptado[i].ToString().Trim());//para el archivo de salida
             }
-            return encriptado;
-        }
-        private byte[] pasarByte(string mensaje)
-        {
-            char[] aux = mensaje.ToCharArray();
-            byte[] digitos = new byte[aux.Length];
-            for (int j = 0; j < aux.Length; j++)
-            {
-                digitos[j] = Convert.ToByte(aux[j]);
-            }
-            return digitos;
+            File.WriteAllText(path + ".cif", contents.ToString());
+
         }
 
-        public string desencripta(BigInteger[] encriptado)
+        public void desencripta(string path)
         {
+            string[] mensaje = File.ReadAllLines(path);
+            BigInteger[] encriptado = new BigInteger[mensaje.Length];
+            BigInteger biout = 0;
+            for (int i = 0; i < mensaje.Length; i++)
+            {
+                if (!BigInteger.TryParse(mensaje[i].Trim(), out encriptado[i]))
+                {
+                    Console.WriteLine("Error al desencriptar");
+                }
+            }
             BigInteger[] desencriptado = new BigInteger[encriptado.Length];
             for (int i = 0; i < desencriptado.Length; i++)
             {
@@ -136,7 +133,8 @@ namespace Laboratorio2
             {
                 charArray[i] = (char)desencriptado[i];
             }
-            return (new string(charArray));
+            string pathExit = path.Substring(0, path.Length - 4);
+            File.WriteAllText(pathExit, new string(charArray));
         }
 
 
