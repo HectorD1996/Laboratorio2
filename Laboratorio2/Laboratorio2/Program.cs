@@ -10,8 +10,10 @@ namespace Laboratorio2
     {
         static void Main(string[] args)
         {
+            Primos lISTpRIMOS = new Primos();
+            lISTpRIMOS.LeerPrimos();
             Llaves llave = new Llaves();
-            llave.getKeys();
+            llave.getKeys(lISTpRIMOS);
         }
     }
 }

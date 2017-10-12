@@ -4,24 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;//Se usa referencia a System Numeric para poder usar Big Integer
+using System.IO;
 
 
 namespace Laboratorio2
 {
     public class Llaves
     {
+        
         //primos
-        BigInteger p = 771154151515621;
-        BigInteger q = 15151851841949;
+        BigInteger p = 0;
+        BigInteger q = 0;
         BigInteger n;
 
         // Φ (simbolo)
         BigInteger fi;
         BigInteger e;
         BigInteger d;
-        public void getKeys()
+        public void getKeys(Primos pr)
         {
             //Calculo de Primos
+            //p = pr.DarPrimo();
+            //q = pr.DarPrimo();
+            p = 1511;
+            q = 1709;
+           
             n = p * q;
 
             //Calcular Φ (n)=(p-1)*(q-1)
@@ -43,7 +50,10 @@ namespace Laboratorio2
             d = ModInverse(e, fi);
 
 
-            string test ="";
+            string test ="TEST.txt";
+            BigInteger[] Enc = Encripta(test);
+            String Result = desencripta(Enc);
+            Console.WriteLine(Result);
         }
 
         //Deteterminar numeros coprimos
@@ -86,8 +96,10 @@ namespace Laboratorio2
 
         public BigInteger[] Encripta(String mensaje)
         {
+            
             int i;
             byte[] temp = new byte[1];
+            //byte[] digitos = File.ReadAllBytes(mensaje);
             byte[] digitos = pasarByte(mensaje);
             BigInteger[] bigdigitos = new BigInteger[digitos.Length];
 
