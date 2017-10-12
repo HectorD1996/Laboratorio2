@@ -114,12 +114,16 @@ namespace Laboratorio2
                 contents.AppendLine(encriptado[i].ToString().Trim());//para el archivo de salida
             }
             File.WriteAllText(path + ".cif", contents.ToString());
-            
+            TextWriter tsw = new StreamWriter("Llaves.txt",true);
+
             StringBuilder LlavesArch = new StringBuilder();
 
             LlavesArch.AppendLine("Lave Publica para encriptacion N: " + n.ToString() + "  e:" + e.ToString());
             LlavesArch.AppendLine("Llave Privada para desencriptacion N: " + n.ToString() + " d:" + d.ToString());
-            File.WriteAllText("Llaves.txt", LlavesArch.ToString());
+            Console.WriteLine("\r\n");
+            tsw.Write(LlavesArch.ToString());
+            tsw.Flush();
+            tsw.Close();
             Console.WriteLine("Las Llaves a almacenadas en el archivo LLaves.txt");
             Console.WriteLine("Presione Caulquier tecla para terminar");
             Console.Read();
