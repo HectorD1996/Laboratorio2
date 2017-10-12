@@ -21,11 +21,9 @@ namespace Laboratorio2
         BigInteger fi;
         BigInteger e;
         BigInteger d;
-        public void getKeys(Primos pr)
+        public void getKeys()
         {
-            //Calculo de Primos
-            //p = pr.DarPrimo();
-            //q = pr.DarPrimo();
+          
             p = 1511;
             q = 1709;
            
@@ -50,10 +48,7 @@ namespace Laboratorio2
             d = ModInverse(e, fi);
 
 
-            string test ="TEST.txt";
-            BigInteger[] Enc = Encripta(test);
-            String Result = desencripta(Enc);
-            Console.WriteLine(Result);
+            
         }
 
         //Deteterminar numeros coprimos
