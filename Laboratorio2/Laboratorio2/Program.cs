@@ -49,8 +49,9 @@ namespace Laboratorio2
                     path = comandos;
                     Console.WriteLine("Ingrese LLave public n y d");
                     
-                    BigInteger d = BigInteger.Parse(Console.ReadLine());
+                    
                     BigInteger n = BigInteger.Parse(Console.ReadLine());
+                    BigInteger d = BigInteger.Parse(Console.ReadLine());
                     llave.desencripta(path, d , n);
                 }
                 else

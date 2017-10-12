@@ -114,8 +114,14 @@ namespace Laboratorio2
                 contents.AppendLine(encriptado[i].ToString().Trim());//para el archivo de salida
             }
             File.WriteAllText(path + ".cif", contents.ToString());
-            Console.WriteLine("Lave Privada " + n.ToString() + " " + e.ToString());
-            Console.WriteLine("Llave Publica " + n.ToString() + " " + d.ToString());
+            
+            StringBuilder LlavesArch = new StringBuilder();
+
+            LlavesArch.AppendLine("Lave Publica para encriptacion N: " + n.ToString() + "  e:" + e.ToString());
+            LlavesArch.AppendLine("Llave Privada para desencriptacion N: " + n.ToString() + " d:" + d.ToString());
+            File.WriteAllText("Llaves.txt", LlavesArch.ToString());
+            Console.WriteLine("Las Llaves a almacenadas en el archivo LLaves.txt");
+            Console.WriteLine("Presione Caulquier tecla para terminar");
             Console.Read();
         }
 
@@ -134,7 +140,7 @@ namespace Laboratorio2
             BigInteger[] desencriptado = new BigInteger[encriptado.Length];
             for (int i = 0; i < desencriptado.Length; i++)
             {
-                //BigInter.ModPow( 'number', 'exponent', 'modulus'));
+                
                 desencriptado[i] = BigInteger.ModPow(encriptado[i], d1, n1);
             }
             char[] charArray = new char[desencriptado.Length];
