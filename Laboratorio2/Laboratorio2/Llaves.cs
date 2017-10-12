@@ -108,7 +108,7 @@ namespace Laboratorio2
             BigInteger[] encriptado = new BigInteger[bigdigitos.Length];
             for (i = 0; i < bigdigitos.Length; i++)
             {
-                //BigInter.ModPow( 'number', 'exponent', 'modulus'));
+                
                 
                 encriptado[i] = BigInteger.ModPow(bigdigitos[i], e, n);
                 contents.AppendLine(encriptado[i].ToString().Trim());//para el archivo de salida
