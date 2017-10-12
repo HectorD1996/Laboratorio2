@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
 
 namespace Laboratorio2
 {
@@ -10,9 +11,11 @@ namespace Laboratorio2
     {
         static void Main(string[] args)
         {
+            Primos lISTpRIMOS = new Primos();
+            lISTpRIMOS.LeerPrimos();
             Llaves llave = new Llaves();
             //llave.getKeys();
-            llave.getKeys();
+            llave.getKeys(lISTpRIMOS);
 
             string path, comandos;
             Console.Write("RSA>> ");
@@ -44,7 +47,11 @@ namespace Laboratorio2
                     comandos = comandos.Substring(3, comandos.Length - 3);
                     comandos.Trim();
                     path = comandos;
-                    llave.desencripta(path);
+                    Console.WriteLine("Ingrese LLave public n y d");
+                    
+                    BigInteger d = BigInteger.Parse(Console.ReadLine());
+                    BigInteger n = BigInteger.Parse(Console.ReadLine());
+                    llave.desencripta(path, d , n);
                 }
                 else
                 {

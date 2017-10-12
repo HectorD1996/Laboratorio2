@@ -12,6 +12,7 @@ namespace Laboratorio2
     public class Llaves
     {
         //primos
+        
         BigInteger p = 771154151515621;
         BigInteger q = 15151851841949;
         BigInteger n;
@@ -20,9 +21,14 @@ namespace Laboratorio2
         BigInteger fi;
         BigInteger e;
         BigInteger d;
-        public void getKeys()
+        public void getKeys(Primos pr)
         {
             //Calculo de Primos
+            p = pr.DarPrimo();
+            do
+            {
+                q = pr.DarPrimo();
+            } while (q == p);
             n = p * q;
 
             //Calcular Φ (n)=(p-1)*(q-1)
@@ -96,20 +102,24 @@ namespace Laboratorio2
             for (i = 0; i < bigdigitos.Length; i++)
             {
                 temp[0] = mensaje[i];
-                bigdigitos[i] = new BigInteger(temp);
+                // bigdigitos[i] = new BigInteger(temp);
+                bigdigitos[i] = BigInteger.Parse(temp[0].ToString());
             }
             BigInteger[] encriptado = new BigInteger[bigdigitos.Length];
             for (i = 0; i < bigdigitos.Length; i++)
             {
                 //BigInter.ModPow( 'number', 'exponent', 'modulus'));
+                
                 encriptado[i] = BigInteger.ModPow(bigdigitos[i], e, n);
                 contents.AppendLine(encriptado[i].ToString().Trim());//para el archivo de salida
             }
             File.WriteAllText(path + ".cif", contents.ToString());
-
+            Console.WriteLine("Lave Privada " + n.ToString() + " " + e.ToString());
+            Console.WriteLine("Llave Publica " + n.ToString() + " " + d.ToString());
+            Console.Read();
         }
 
-        public void desencripta(string path)
+        public void desencripta(string path, BigInteger d1, BigInteger n1)
         {
             string[] mensaje = File.ReadAllLines(path);
             BigInteger[] encriptado = new BigInteger[mensaje.Length];
@@ -125,16 +135,20 @@ namespace Laboratorio2
             for (int i = 0; i < desencriptado.Length; i++)
             {
                 //BigInter.ModPow( 'number', 'exponent', 'modulus'));
-                desencriptado[i] = BigInteger.ModPow(encriptado[i], d, n);
+                desencriptado[i] = BigInteger.ModPow(encriptado[i], d1, n1);
             }
             char[] charArray = new char[desencriptado.Length];
+            byte[] byteArray = new byte[desencriptado.Length];
 
             for (int i = 0; i < charArray.Length; i++)
             {
-                charArray[i] = (char)desencriptado[i];
+                //charArray[i] = (char)desencriptado[i];
+                byteArray[i] = (byte)desencriptado[i];
             }
             string pathExit = path.Substring(0, path.Length - 4);
-            File.WriteAllText(pathExit, new string(charArray));
+            // File.WriteAllText(pathExit, new string(charArray));
+            File.WriteAllBytes(pathExit, byteArray);
+            
         }
 
 
