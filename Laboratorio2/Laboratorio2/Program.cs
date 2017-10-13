@@ -30,7 +30,9 @@ namespace Laboratorio2
                 {
                     comandos = comandos.Substring(3, comandos.Length - 3);
                     comandos.Trim();
-                    path = comandos;
+                    comandos.Replace('"', ' ');//se quitan las comillas dobles
+                    path = comandos.Trim(); ;
+
                     llave.Encripta(path);
                 }
                 else
@@ -64,6 +66,7 @@ namespace Laboratorio2
                 Console.WriteLine("RSA>> Error");
                 error = true;
             }
+            Console.ReadKey();
         }
     }
 }
