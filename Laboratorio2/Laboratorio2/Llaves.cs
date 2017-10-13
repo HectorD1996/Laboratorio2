@@ -50,7 +50,7 @@ namespace Laboratorio2
             d = ModInverse(e, fi);
 
 
-            string test ="";
+            
         }
 
         //Deteterminar numeros coprimos
@@ -117,10 +117,10 @@ namespace Laboratorio2
             TextWriter tsw = new StreamWriter("Llaves.txt",true);
 
             StringBuilder LlavesArch = new StringBuilder();
-
+            LlavesArch.AppendLine(path);
             LlavesArch.AppendLine("Lave Publica para encriptacion N: " + n.ToString() + "  e:" + e.ToString());
             LlavesArch.AppendLine("Llave Privada para desencriptacion N: " + n.ToString() + " d:" + d.ToString());
-            Console.WriteLine("\r\n");
+            tsw.WriteLine("\r\n");
             tsw.Write(LlavesArch.ToString());
             tsw.Flush();
             tsw.Close();
@@ -158,7 +158,7 @@ namespace Laboratorio2
             string pathExit = path.Substring(0, path.Length - 4);
             // File.WriteAllText(pathExit, new string(charArray));
             File.WriteAllBytes(pathExit, byteArray);
-            
+            Console.WriteLine("Descifrado  Terminado Presione cualquier tecla para terminar");
         }
 
 

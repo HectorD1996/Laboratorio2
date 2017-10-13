@@ -30,7 +30,9 @@ namespace Laboratorio2
                 {
                     comandos = comandos.Substring(3, comandos.Length - 3);
                     comandos.Trim();
-                    comandos.Replace('"', ' ');//se quitan las comillas dobles
+                   
+                    comandos = comandos.Replace('"', ' ');//se quitan las comillas dobles
+                    
                     path = comandos.Trim(); ;
 
                     llave.Encripta(path);
@@ -48,12 +50,14 @@ namespace Laboratorio2
                 {
                     comandos = comandos.Substring(3, comandos.Length - 3);
                     comandos.Trim();
+                    comandos = comandos.Replace('"', ' ');//se quitan las comillas dobles
                     path = comandos;
                     Console.WriteLine("Ingrese LLave public n y d");
                     
                     
                     BigInteger n = BigInteger.Parse(Console.ReadLine());
                     BigInteger d = BigInteger.Parse(Console.ReadLine());
+                    
                     llave.desencripta(path, d , n);
                 }
                 else

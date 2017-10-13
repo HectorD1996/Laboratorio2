@@ -33,7 +33,7 @@ namespace Laboratorio2
                 
             }
 
-            String end = "";
+           
         }
        
         public BigInteger DarPrimo()
